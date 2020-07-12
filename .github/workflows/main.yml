@@ -9,6 +9,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
+        # this is needed to make force pushing retain history
         fetch-depth: 0
     - name: Update Repo Readme
       run: |
