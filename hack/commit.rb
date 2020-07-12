@@ -2,12 +2,11 @@ MESSAGE = "Update readme"
 
 system('git config --global user.email "githubactions@example.com"')
 system('git config --global user.name "GitHub Actions"')
-system("git log")
 system("git add .")
 
 latest_commit_message = `git log -1 --pretty=%B`
 
-puts "Last commit: '#{latest_commit_message}'"
+puts "Last commit: '#{latest_commit_message.strip}'"
 
 if latest_commit_message.include? MESSAGE
   puts "Updating last update commit"
