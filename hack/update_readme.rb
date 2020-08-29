@@ -43,7 +43,7 @@ My main home is [charlieegan3.com](https://charlieegan3.com) but here's my lates
 
 HTML
 
-uri = URI.parse("https://charlieegan3.com/data/status.json")
+uri = URI.parse("https://charlieegan3.github.io/json-charlieegan3/build/status.json")
 response = Net::HTTP.get_response(uri)
 data = JSON.parse(response.body).sort_by { |_, v| v["created_at"] }.reverse
 
