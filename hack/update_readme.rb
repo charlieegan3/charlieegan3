@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require 'erb'
 require 'net/http'
 require 'uri'
@@ -47,10 +49,8 @@ uri = URI.parse("https://charlieegan3.github.io/json-charlieegan3/build/status.j
 response = Net::HTTP.get_response(uri)
 data = JSON.parse(response.body).sort_by { |_, v| v["created_at"] }.reverse
 
-uri = URI.parse("http://worldtimeapi.org/api/timezone/Europe/London.txt")
-response = Net::HTTP.get_response(uri)
-hour = Time.parse(response.body.scan(/^datetime: (.*)$/).flatten.first).hour
-case hour
+# who likes BST anyway...
+case Time.now.utc.hour
 when 0..8
   time = "🌌"
 when 22..23
