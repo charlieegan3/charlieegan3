@@ -6,6 +6,12 @@ require 'uri'
 require 'json'
 require 'time'
 
+def load_status
+  uri = URI.parse("https://charlieegan3.github.io/json-charlieegan3/build/status.json")
+  response = Net::HTTP.get_response(uri)
+  JSON.parse(response.body).sort_by { |_, v| v["created_at"] }.reverse
+end
+
 templates = {}
 
 templates["tweet"] = <<-MD.chomp
@@ -45,9 +51,24 @@ My main home is [charlieegan3.com](https://charlieegan3.com) but here's my lates
 
 HTML
 
-uri = URI.parse("https://charlieegan3.github.io/json-charlieegan3/build/status.json")
-response = Net::HTTP.get_response(uri)
-data = JSON.parse(response.body).sort_by { |_, v| v["created_at"] }.reverse
+
+max_retries = 5
+retries = 0
+data = nil
+
+begin
+  data = load_status
+rescue Exception => e
+  puts "Retrying... (#{e.message})"
+  if retries <= max_retries
+    retries += 1
+    sleep 3 ** retries
+    retry
+  else
+    raise "Timeout: #{e.message}"
+  end
+end
+
 
 # who likes BST anyway...
 case Time.now.utc.hour
