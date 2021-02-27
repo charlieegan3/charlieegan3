@@ -4,7 +4,7 @@
 (require racket/string)
 (require "../utils/hash.rkt")
 
-; valid github data example
+; valid data example
 ; {
 ;   "commit": {
 ;     "message": "Merge pull request #218 from jetstack/local-server-comment",
@@ -18,7 +18,8 @@
 ;   },
 ; }
 
-(define (validate-data hsh)
+(provide validate-commit)
+(define (validate-commit hsh)
   (let
     ([missing-keys
       (hash-missing-keys '("message" "url" "repo" "created_at" "created_at_string") hsh)]
@@ -35,9 +36,9 @@
   (test-case
     "validates hash as ok when valid"
     (let ([input (hash "message" "" "url" "" "repo" (hash "name" "" "url" "") "created_at" "" "created_at_string" "")])
-    (check-equal? (validate-data input) "")))
+      (check-equal? (validate-commit input) "")))
 
   (test-case
     "validates hash as bad when missing repo keys"
     (let ([input (hash "url" "" "repo" (hash "name" "") "created_at" "" "created_at_string" "")])
-    (check-equal? (validate-data input) "missing keys: message; missing keys from repo: url"))))
+      (check-equal? (validate-commit input) "missing keys: message; missing keys from repo: url"))))
