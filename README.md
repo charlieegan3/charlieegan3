@@ -1,19 +1,15 @@
 
-Welcome to my GitHub profile! 🌆
+Welcome to my GitHub profile! 🌤️
 
 My main home is [charlieegan3.com](https://charlieegan3.com) but here's my latest news:
 
 
-* 🎧 [_"Mistakes"_ by _Kooma, Veela_](https://music.charlieegan3.com) <sub><sup>5h ago</sub></sup> 
-* 💻 [Public commit](https://api.github.com/repos/charlieegan3/linux-environment/commits/9f389edf58f2d8789b60664152cf48f9ef89a9dc) <sub><sup>1d ago</sub></sup>
-  > Make scripts executable 
-* 🎽 [Strava activity](https://www.strava.com/activities/4180094640) <sub><sup>1d ago</sub></sup>
-  > Insulated swim cap for the win 
-* 🐦 [Tweet](https://twitter.com/charlieegan3/status/1312904260355584000) <sub><sup>1w ago</sub></sup>
-  > 🎶Karma, karma, karma, karma, karma chameleon...🎶
-
-'System wide' (Alacritty, Neovim, FF) night mode toggle built with gammastep, alacritty-colorscheme, neovim-remote, Dark Reader, sway, ydotool, waybar and bash.
-
-https://t.co/ZQhI 
-* 📸 [Cambridge Heath](https://instagram.com/p/CFpH2_Tg59r) <sub><sup>2w ago</sub></sup> 
-* 📽️ Watched [The Train Stop](https://letterboxd.com/charlieegan3/film/the-train-stop/) <sub><sup>4mths ago</sub></sup> 
+* 🎧 [_"Hawk"_ by _Bicep, machìna_](https://music.charlieegan3.com) <sub><sup>33m ago</sub></sup> 
+* 🎽 [Strava activity](https://www.strava.com/activities/4854522750) <sub><sup>21h ago</sub></sup>
+  > Hill reps, trying to keep 3:40 
+* 🐦 [Tweet](https://twitter.com/charlieegan3/status/1364853367277772800) <sub><sup>2d ago</sub></sup>
+  > Maybe use comic sans if the referrer is hacker news? Hacker news hates comic sans... 
+* 💻 [Public commit](https://github.com/jetstack/preflight/commit/7f4cb90dc5112d7c5e8357682da7866af3eee7c9) <sub><sup>1w ago</sub></sup>
+  > Merge pull request #218 from jetstack/local-server-comment 
+* 📸 [Dartmouth Park](https://instagram.com/p/CLXPx-rrl3P) <sub><sup>1w ago</sub></sup> 
+* 📽️ Watched [Lance](https://letterboxd.com/charlieegan3/film/lance/) <sub><sup>2w ago</sub></sup> 
