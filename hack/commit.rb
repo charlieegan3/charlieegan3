@@ -10,8 +10,8 @@ puts "Last commit: '#{latest_commit_message.strip}'"
 
 if latest_commit_message.include? MESSAGE
   puts "Updating last update commit"
-  # also updat the date to the latest check time
-  system('git commit --amend --no-edit  --date="$(date -R)"')
+  # also update the date to the latest check time
+  system('git commit --amend --no-edit --date="$(date -R)"')
   system("git push -f")
 else
   puts "Creating new update commit..."
