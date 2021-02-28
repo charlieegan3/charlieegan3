@@ -1,7 +1,5 @@
 #lang racket/base
 
-(require racket/bool)
-(require racket/string)
 (require "../utils/hash.rkt")
 
 ; valid data example
@@ -18,9 +16,9 @@
 (provide validate-post)
 (define (validate-post hsh)
   (let
-    ([missing-keys
-      (hash-missing-keys '("url" "location" "type" "created_at" "created_at_string") hsh)])
-    (if (> (length missing-keys) 0) (format "missing keys: ~a" (string-join missing-keys ", ")) "")))
+    ([schema-message
+      (hash-schema hsh '("url" "location" "type" "created_at" "created_at_string"))])
+    (if (equal? schema-message "") "" (format "schema validation failed: ~a" schema-message))))
 
 (module+ test
   (require rackunit)
@@ -32,4 +30,4 @@
   (test-case
     "validates hash as bad when missing keys"
     (let ([input (hash "location" "" "type" "" "created_at" "" "created_at_string" "")])
-      (check-equal? (validate-post input) "missing keys: url"))))
+      (check-equal? (validate-post input) "schema validation failed: missing: url"))))

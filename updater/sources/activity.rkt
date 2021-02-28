@@ -1,7 +1,5 @@
 #lang racket/base
 
-(require racket/bool)
-(require racket/string)
 (require "../utils/hash.rkt")
 
 ; valid data example
@@ -21,9 +19,9 @@
 (provide validate-activity)
 (define (validate-activity hsh)
   (let
-    ([missing-keys
-      (hash-missing-keys '("average_heartrate" "url" "distance" "moving_time" "name" "type" "created_at" "created_at_string") hsh)])
-    (if (> (length missing-keys) 0) (format "missing keys: ~a" (string-join missing-keys ", ")) "")))
+    ([schema-message
+      (hash-schema hsh '("average_heartrate" "url" "distance" "moving_time" "name" "type" "created_at" "created_at_string"))])
+    (if (equal? schema-message "") "" (format "schema validation failed: ~a" schema-message))))
 
 (module+ test
   (require rackunit)
@@ -35,4 +33,4 @@
   (test-case
     "validates hash as bad when missing keys"
     (let ([input (hash "url" "" "distance" "" "moving_time" "" "name" "" "type" "" "created_at" "" "created_at_string" "")])
-      (check-equal? (validate-activity input) "missing keys: average_heartrate"))))
+      (check-equal? (validate-activity input) "schema validation failed: missing: average_heartrate"))))

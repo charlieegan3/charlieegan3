@@ -1,7 +1,5 @@
 #lang racket/base
 
-(require racket/bool)
-(require racket/string)
 (require "../utils/hash.rkt")
 
 ; valid data example
@@ -19,9 +17,9 @@
 (provide validate-play)
 (define (validate-play hsh)
   (let
-    ([missing-keys
-      (hash-missing-keys '("album" "artist" "artwork" "track" "created_at" "created_at_string") hsh)])
-    (if (> (length missing-keys) 0) (format "missing keys: ~a" (string-join missing-keys ", ")) "")))
+    ([schema-message
+      (hash-schema hsh '("album" "artist" "artwork" "track" "created_at" "created_at_string"))])
+    (if (equal? schema-message "") "" (format "schema validation failed: ~a" schema-message))))
 
 (module+ test
   (require rackunit)
@@ -33,4 +31,4 @@
   (test-case
     "validates hash as bad when missing keys"
     (let ([input (hash "artist" "" "artwork" "" "track" "" "created_at" "" "created_at_string" "")])
-    (check-equal? (validate-play input) "missing keys: album"))))
+    (check-equal? (validate-play input) "schema validation failed: missing: album"))))

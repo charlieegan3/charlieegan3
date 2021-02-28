@@ -52,7 +52,7 @@
 
 ; hash-schema ensures that a hash has the required schema, recursively
 (provide hash-schema)
-(define (hash-schema hsh schema prefix)
+(define (hash-schema hsh schema [prefix ""])
   (let
     ([missing-keys (foldr
                      append
@@ -76,16 +76,16 @@
   (require rackunit)
   (test-case
     "validates a simple hash"
-    (check-equal? (hash-schema (hash "a" "1" "b" "2") '("a" "b") "") ""))
+    (check-equal? (hash-schema (hash "a" "1" "b" "2") '("a" "b")) ""))
   (test-case
     "validates a simple hash with missing key"
-    (check-equal? (hash-schema (hash "a" "1" "b" "2") '("a" "b" "c") "") "missing: c"))
+    (check-equal? (hash-schema (hash "a" "1" "b" "2") '("a" "b" "c")) "missing: c"))
   (test-case
     "validates a nested hash"
-    (check-equal? (hash-schema (hash "a" (hash "b" "1")) (list (list "a" "b")) "") ""))
+    (check-equal? (hash-schema (hash "a" (hash "b" "1")) (list (list "a" "b"))) ""))
   (test-case
     "validates a nested hash with missing key"
-    (check-equal? (hash-schema (hash "a" (hash "b" "1")) (list (list "a" "b" "c")) "") "missing: a.c"))
+    (check-equal? (hash-schema (hash "a" (hash "b" "1")) (list (list "a" "b" "c"))) "missing: a.c"))
   (test-case
     "validates a nested hash with many missing keys"
-    (check-equal? (hash-schema (hash "a" (hash "b" "1")) (list (list "a" "b" "c") "d") "") "missing: a.c, d")))
+    (check-equal? (hash-schema (hash "a" (hash "b" "1")) (list (list "a" "b" "c") "d")) "missing: a.c, d")))

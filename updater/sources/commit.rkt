@@ -1,7 +1,5 @@
 #lang racket/base
 
-(require racket/bool)
-(require racket/string)
 (require "../utils/hash.rkt")
 
 ; valid data example
@@ -21,15 +19,9 @@
 (provide validate-commit)
 (define (validate-commit hsh)
   (let
-    ([missing-keys
-      (hash-missing-keys '("message" "url" "repo" "created_at" "created_at_string") hsh)]
-     [missing-repo-keys
-      (hash-missing-keys '("name" "url") (hash-dig '("repo") hsh))])
-    (string-join
-      (append
-        (if (> (length missing-keys) 0) (list (format "missing keys: ~a" (string-join missing-keys ", "))) '())
-        (if (> (length missing-repo-keys) 0) (list (format "missing keys from repo: ~a" (string-join missing-repo-keys ", "))) '()))
-      "; ")))
+    ([schema-message
+      (hash-schema hsh '("message" "url" ("repo" "name" "url") "created_at" "created_at_string"))])
+    (if (equal? schema-message "") "" (format "schema validation failed: ~a" schema-message))))
 
 (module+ test
   (require rackunit)
@@ -41,4 +33,4 @@
   (test-case
     "validates hash as bad when missing repo keys"
     (let ([input (hash "url" "" "repo" (hash "name" "") "created_at" "" "created_at_string" "")])
-      (check-equal? (validate-commit input) "missing keys: message; missing keys from repo: url"))))
+      (check-equal? (validate-commit input) "schema validation failed: missing: message, repo.url"))))
