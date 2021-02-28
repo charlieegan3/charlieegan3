@@ -2,6 +2,7 @@
 
 (require racket/bool)
 (require racket/list)
+(require racket/string)
 
 ; hash-missing-keys returns a list of keys missing from a hash
 (provide hash-missing-keys)
@@ -48,3 +49,43 @@
   (test-case
     "returns an empty hash when missing"
     (check-equal? (hash-dig (list "a" "b") (hash "a" (hash))) (hash))))
+
+; hash-schema ensures that a hash has the required schema, recursively
+(provide hash-schema)
+(define (hash-schema hsh schema prefix)
+  (let
+    ([missing-keys (foldr
+                     append
+                     '()
+                     (map
+                       (lambda (e)
+                         (if (list? e)
+                           (hash-schema (hash-dig (list (first e)) hsh) (rest e) (format "~a" (first e)))
+                           (if (hash-has-key? hsh e) '() (list e))))
+                       schema))])
+    (if (equal? prefix "")
+      (if (> (length missing-keys) 0)
+         (format "missing: ~a" (string-join missing-keys ", "))
+         "")
+      (if (> (length missing-keys) 0)
+         (map (lambda (e) (format "~a.~a" prefix e)) missing-keys)
+         '()))
+))
+
+(module+ test
+  (require rackunit)
+  (test-case
+    "validates a simple hash"
+    (check-equal? (hash-schema (hash "a" "1" "b" "2") '("a" "b") "") ""))
+  (test-case
+    "validates a simple hash with missing key"
+    (check-equal? (hash-schema (hash "a" "1" "b" "2") '("a" "b" "c") "") "missing: c"))
+  (test-case
+    "validates a nested hash"
+    (check-equal? (hash-schema (hash "a" (hash "b" "1")) (list (list "a" "b")) "") ""))
+  (test-case
+    "validates a nested hash with missing key"
+    (check-equal? (hash-schema (hash "a" (hash "b" "1")) (list (list "a" "b" "c")) "") "missing: a.c"))
+  (test-case
+    "validates a nested hash with many missing keys"
+    (check-equal? (hash-schema (hash "a" (hash "b" "1")) (list (list "a" "b" "c") "d") "") "missing: a.c, d")))
