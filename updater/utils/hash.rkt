@@ -1,6 +1,5 @@
 #lang racket/base
 
-(require racket/bool)
 (require racket/list)
 (require racket/string)
 
