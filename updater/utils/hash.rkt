@@ -4,30 +4,6 @@
 (require racket/list)
 (require racket/string)
 
-; hash-missing-keys returns a list of keys missing from a hash
-(provide hash-missing-keys)
-(define (hash-missing-keys required-keys hash)
-  (foldr
-    append
-    '()
-    (map
-      (lambda (e) (if (not (hash-has-key? hash e)) (list e) '()))
-      required-keys)))
-
-(module+ test
-  (require rackunit)
-  (test-case
-    "returns missing keys when not present in hash"
-    (check-equal? (hash-missing-keys (list "a" "b") (hash "a" "1")) (list "b")))
-
-  (test-case
-    "returns missing keys in the same order as the request list"
-    (check-equal? (hash-missing-keys (list "a" "b") (hash)) (list "a" "b")))
-
-  (test-case
-    "returns an empty list if there are no keys missing"
-    (check-equal? (hash-missing-keys (list "a" "b") (hash "a" "1" "b" "2")) '())))
-
 ; hash-dig returns the value at the leaf of a nested path with a potentially
 ; nested hash
 (provide hash-dig)
