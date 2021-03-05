@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 MESSAGE = "Update readme"
 
 system('git config --global user.email "githubactions@example.com"')

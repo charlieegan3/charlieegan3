@@ -12,14 +12,14 @@
 
 (require "./render.rkt")
 
-(define input-file
+(define files
   (command-line
-    #:args (filename)
-    filename))
+    #:args (status-json readme)
+    (list status-json readme)))
 
 (define loaded-data
   (with-input-from-string
-    (file->string input-file)
+    (file->string (first files))
     (lambda () (read-json))))
 
 (define sorted-items
@@ -46,4 +46,24 @@
       sorted-items)
     "\n"))
 
-(display md-list)
+(define tod-icon
+  (case (->hours (current-time))
+    [(range 0 8 1) "🌌"]
+    [(range 9 12 1) "🌄"]
+    [(range 13 17 1) "🌤️"]
+    [(range 18 21 1) "🌆"]
+    [(range 21 23 1) "🌃"]))
+
+(define template #<<MD
+Welcome to my GitHub profile! ~a
+
+My main home is [charlieegan3.com](https://charlieegan3.com) but here's my latest news:
+
+~a
+
+MD
+)
+
+(define out (open-output-file (list-ref files 1) #:exists 'replace))
+(display (format template tod-icon md-list) out)
+(close-output-port out)
