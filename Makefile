@@ -1,5 +1,5 @@
 test:
-	raco test .
+	raco test $$(find updater -type f | grep -v main.rkt)
 
 watch_test:
 	find . | entr bash -c 'clear && make test'
