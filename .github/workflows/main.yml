@@ -11,11 +11,4 @@ jobs:
       with:
         # this is needed to make force pushing retain history
         fetch-depth: 0
-    - uses: Bogdanp/setup-racket@v1.4
-      with:
-        architecture: 'x64'
-        distribution: 'full'
-        variant: 'CS'
-        version: '8.0'
-        packages: 'gregor'
     - run: make all
