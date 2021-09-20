@@ -13,4 +13,8 @@ jobs:
       with:
         # this is needed to make force pushing retain history
         fetch-depth: 0
-    - run: make all
+    - run: |
+        if ! command -v retry &> /dev/null; then \
+          sh -c "curl https://raw.githubusercontent.com/kadwanev/retry/master/retry -o /usr/local/bin/retry && chmod +x /usr/local/bin/retry"; \
+        fi
+    - run: retry make all

@@ -2,10 +2,6 @@ FROM ghcr.io/charlieegan3/racket-gregor:latest as build
 
 WORKDIR /app
 
-COPY Makefile .
-
-RUN make install_retry
-
 COPY . .
 
 RUN make update_status
