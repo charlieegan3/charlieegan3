@@ -4,7 +4,7 @@ MESSAGE = "Update readme"
 
 system('git config --global user.email "githubactions@example.com"')
 system('git config --global user.name "GitHub Actions"')
-system("git add .")
+system("git add README.md")
 
 latest_commit_message = `git log -1 --pretty=%B`
 

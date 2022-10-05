@@ -1,13 +1,15 @@
-Welcome to my GitHub profile! 🌆
+
+Welcome to my GitHub profile! 🌄
 
 My main home is [charlieegan3.com](https://charlieegan3.com) but here's my latest news:
 
-* 🎽 [Strava activity](https://www.strava.com/activities/5965705960) <sub><sup>2h ago</sub></sup>
-* 📽️ Watched [Bohemian Rhapsody](https://letterboxd.com/charlieegan3/film/bohemian-rhapsody/) <sub><sup>2d ago</sub></sup>
-* 💻 [Public commit](https://github.com/charlieegan3/fetch-gh-release-binary/commit/f04f8c8846556c859019ac4ec2ca2f64aacd9d39) <sub><sup>1d ago</sub></sup>
-  > Fetch repo as part of action
-* 🐦 [Tweet](https://twitter.com/charlieegan3/status/1435956498283343877) <sub><sup>6d ago</sub></sup>
-  > RT @JetstackHQ: Want to define policies to restrict/control certificates in your Kubernetes cluster? 🤔
-> cert-manager has just released app
-* 📸 [St Ives, Cornwall](https://instagram.com/p/CTHAjftA4ki) <sub><sup>2w ago</sub></sup>
-* 🎧 [_"Stars Collide"_ by _Andrew Rayel, Robbie Seed, That Girl_](https://music.charlieegan3.com) <sub><sup>1mth ago</sub></sup>
+
+* 🎧 [_"Shards"_ by _George FitzGerald, Lawrence Hart_](https://music.charlieegan3.com) <sub><sup>1h ago</sub></sup> 
+* 📸 [Archway, London](https://photos.charlieegan3.com/posts/2677) <sub><sup>1h ago</sub></sup> 
+* 💻 [Public commit](https://github.com/charlieegan3/tool-airtable-contacts/commit/c6f141b4a6d27e0036ee6afedc1820ef59f110b9) <sub><sup>2h ago</sub></sup>
+  > Implement toolbelt tools 
+* 🎽 [Strava activity](https://www.strava.com/activities/7908621793) <sub><sup>1d ago</sub></sup>
+  > Think 8 is quite enough Jeremy  
+* 🐦 [Tweet](https://twitter.com/charlieegan3/status/1573931898916724736) <sub><sup>1w ago</sub></sup>
+  > Not sure I’m afraid 😬 I use PhotoSync which supports various self hosted options in addition to cloud backup tar 
+* 📽️ Watched [Top Gun: Maverick](https://letterboxd.com/charlieegan3/film/top-gun-maverick/) <sub><sup>2mths ago</sub></sup> 
